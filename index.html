@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GE 10A - Homework 3: Reduce Relative Clauses</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+            color: #333;
+            background-image: url('image.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            position: relative;
+            margin: 10px auto;
+        }
+        @media (min-width: 768px) {
+            body {
+                padding: 20px;
+            }
+            .container {
+                padding: 35px;
+            }
+        }
+        h1 {
+            color: #3f1d4cb3;
+            font-size: 22px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 26px;
+            }
+        }
+        h2, h3 {
+            color: #4a154b;
+        }
+        .meta-box {
+            border: 2px dashed #b5a2c1;
+            background: #f7f2f7;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #5e2c5e;
+            font-weight: 600;
+            text-align: center;
+        }
+        @media (min-width: 768px) {
+            .meta-box {
+                font-size: 15px;
+                padding: 12px;
+            }
+        }
+        .timer-box {
+            background: #f3e8f5;
+            border: 1px solid #ba81c7;
+            color: #7b2e7d;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        .instructions-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: left;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        @media (min-width: 768px) {
+            .instructions-card {
+                padding: 20px 25px;
+            }
+        }
+        .instructions-card h3 {
+            color: #4a154b;
+            margin-top: 0;
+            margin-bottom: 12px;
+            font-size: 16px;
+            text-align: center;
+        }
+        @media (min-width: 768px) {
+            .instructions-card h3 {
+                font-size: 18px;
+            }
+        }
+        .instructions-card ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+        .instructions-card li {
+            margin-bottom: 8px;
+            color: #555;
+            font-size: 14px;
+        }
+        @media (min-width: 768px) {
+            .instructions-card li {
+                font-size: 15px;
+            }
+        }
+        .input-section {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .input-section label {
+            display: block;
+            font-weight: bold;
+            color: #4a154b;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+        .input-section input[type="text"] {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        .input-section input[type="text"]:focus {
+            outline: none;
+            border-color: #6a1b9a;
+            box-shadow: 0 0 8px rgba(106, 27, 154, 0.3);
+        }
+        .start-btn {
+            background: linear-gradient(135deg, #6a1b9a, #4a154b);
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: opacity 0.2s, transform 0.1s;
+            box-shadow: 0 4px 15px rgba(106, 27, 154, 0.4);
+        }
+        .start-btn:hover {
+            opacity: 0.95;
+            transform: translateY(-1px);
+        }
+        .exercise {
+            margin-bottom: 30px;
+        }
+        .question-card {
+            background: #ffffff;
+            border: 1px solid #e2d8e5;
+            border-radius: 10px;
+            padding: 12px 15px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 6px rgba(106, 27, 154, 0.04);
+            transition: all 0.2s ease;
+        }
+        @media (min-width: 768px) {
+            .question-card {
+                padding: 16px 20px;
+                margin-bottom: 15px;
+            }
+        }
+        .question-card:hover {
+            border-color: #b5a2c1;
+            box-shadow: 0 4px 12px rgba(106, 27, 154, 0.08);
+        }
+        .question-text {
+            font-size: 14px;
+            color: #382b3e;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        @media (min-width: 768px) {
+            .question-text {
+                font-size: 15px;
+                margin-bottom: 12px;
+            }
+        }
+        .question-input {
+            width: 100%;
+            padding: 10px 14px;
+            font-size: 16px; 
+            border: 1px solid #ded0d8;
+            border-radius: 8px;
+            background-color: #fcfbfd;
+            transition: all 0.2s;
+        }
+        .question-input:focus {
+            outline: none;
+            border-color: #6a1b9a;
+            background-color: #ffffff;
+            box-shadow: 0 0 8px rgba(106, 27, 154, 0.15);
+        }
+        .sample-guide {
+            background: #f7f2f7;
+            border: 1px solid #ded0d8;
+            border-left: 5px solid #6a1b9a;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 13px;
+            color: #5e2c5e;
+        }
+        @media (min-width: 768px) {
+            .sample-guide {
+                padding: 15px 20px;
+                font-size: 14px;
+            }
+        }
+        .sample-guide strong {
+            color: #4a154b;
+        }
+        .highlight-green {
+            background-color: #d1e7dd;
+            color: #0f5132;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .submit-container {
+            text-align: center;
+            margin-top: 25px;
+        }
+        .submit-btn {
+            background-color: #4a154b;
+            color: white;
+            padding: 14px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s;
+            box-shadow: 0 4px 12px rgba(74, 21, 75, 0.3);
+        }
+        @media (min-width: 768px) {
+            .submit-btn {
+                width: auto;
+                padding: 12px 30px;
+            }
+        }
+        .submit-btn:hover {
+            background-color: #350f36;
+        }
+        hr {
+            border: 0;
+            border-top: 1px solid #e0e0e0;
+            margin: 25px 0;
+        }
+        .hidden {
+            display: none !important;
+        }
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 10px;
+        }
+        .modal-card {
+            background: #fff;
+            width: 100%;
+            max-width: 500px;
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        @media (min-width: 768px) {
+            .modal-card {
+                padding: 30px;
+            }
+        }
+        .modal-card h2 {
+            color: #4a154b;
+            margin-top: 0;
+            font-size: 22px;
+        }
+        .modal-card p {
+            margin: 8px 0;
+            color: #555;
+            font-size: 14px;
+        }
+        .score-display {
+            font-size: 20px;
+            font-weight: bold;
+            color: #4a154b;
+            margin: 12px 0;
+        }
+        .feedback-msg {
+            background: #f7f2f7;
+            border: 1px solid #ded0d8;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 13px;
+            margin: 12px 0;
+            color: #5e2c5e;
+        }
+        .screenshot-warning {
+            font-weight: bold;
+            color: #b02a37;
+            font-size: 12px;
+            margin: 12px 0;
+            text-transform: uppercase;
+        }
+        .modal-btn {
+            background: #6a1b9a;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            box-shadow: 0 4px 12px rgba(106, 27, 154, 0.3);
+        }
+        .modal-btn:hover {
+            background: #4a154b;
+        }
+        .review-item {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            text-align: left;
+            font-size: 14px;
+        }
+        .review-item.correct {
+            border-left: 5px solid #6a1b9a;
+        }
+        .review-item.incorrect {
+            border-left: 5px solid #c92a2a;
+        }
+        .user-ans {
+            font-weight: bold;
+        }
+        .correct-ans {
+            color: #6a1b9a;
+            font-weight: bold;
+        }
+        .explanation {
+            font-size: 12px;
+            color: #6c757d;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Start Page Section -->
+        <div id="startPage">
+            <h1>📘 Paññāsāstra International School (PSIS) 📘</h1>
+            
+            <div class="meta-box">
+                LEVEL: GE10A &nbsp;|&nbsp; SUBJECT: CORE-ENGLISH &nbsp;|&nbsp; INSTRUCTOR: PKRE
+            </div>
+
+            <div class="instructions-card">
+                <h3>✨ HW 3: U8LA: Reduce Relative Clauses ✨</h3>
+                <ul>
+                    <li>Rewrite each sentence using reduced relative clauses based on the highlighted structure (14 items).</li>
+                    <li>Type <strong>only</strong> the reduced form into the box.</li>
+                    <li><strong>Time Limit:</strong> You have strictly <strong>40 minutes</strong> to complete this homework. The exam will auto-submit when time runs out.</li>
+                </ul>
+            </div>
+
+            <form id="startForm" onsubmit="startHomework(event)">
+                <div class="input-section">
+                    <label for="fullName">Enter your Full Name:</label>
+                    <input type="text" id="fullName" name="fullName" placeholder="e.g., John Doe" required>
+                </div>
+
+                <button type="submit" class="start-btn">Start Homework 🚀</button>
+            </form>
+        </div>
+
+        <!-- Homework Content Section -->
+        <div id="homeworkContent" class="hidden">
+            <div class="meta-box" style="margin-bottom: 10px;">
+                Student: <span id="displayName" style="font-weight: bold;"></span> | GE 10A - Homework 3
+            </div>
+
+            <div class="timer-box" id="timerDisplay">
+                ⏱️ Time Remaining: 40:00
+            </div>
+
+            <form id="hwForm" onsubmit="handleFinalSubmission(event)">
+                <div class="exercise">
+                    <h3>Exercise - Reduce Relative Clauses (14 Items)</h3>
+                    <div class="sample-guide">
+                        💡 <strong>Sample Guide (Structure 1: RP + Verb $\rightarrow$ V-ing):</strong><br>
+                        Sentence: Someone <span class="highlight-green">who hopes</span> to be a chef should get the proper training.<br>
+                        Reduced: <em>hoping</em><br><br>
+                        💡 <strong>Sample Guide (Structure 2: RP + To Be $\rightarrow$ Remove both / V-ed / Adjective):</strong><br>
+                        Sentence: The Summer Olympics, <span class="highlight-green">which are held</span> every four years, attract millions of viewers.<br>
+                        Reduced: <em>held</em><br><br>
+                        💡 <strong>Sample Guide (Structure 3: RP + Have/Has $\rightarrow$ with + noun):</strong><br>
+                        Sentence: A person <span class="highlight-green">who has</span> good communication skills can get the job.<br>
+                        Reduced: <em>with</em>
+                    </div>
+                    
+                    <div class="question-card">
+                        <div class="question-text">1. The photographer <span class="highlight-green">who lives</span> upstairs has won many awards for his creativity.</div>
+                        <input type="text" class="question-input" name="ex_1" placeholder="Type reduced form here...">
+                    </div>
+                    <div class="question-card">
+                        <div class="question-text">2. Anyone <span class="highlight-green">who wants</span> to be an actor needs both talent and luck.</div>
+                        <input type="text" class="question-input" name="ex_2" placeholder="Type reduced form here...">
+                    </div>
+                    <div class="question-card">
+                        <div class="question-text">3. Professional cooking, <span class="highlight-green">which is considered</span> a tough business, requires both patience and skill.</div>
+                        <input type="text" class="question-input" name="ex_3" placeholder="Type reduced form here...">
+                    </div>
+                    <div class="question-card">
+                        <div class="question-text">4. A person <span class="highlight-green">who works</span> as a comedian is always looking for new ways to make people laugh.</div>
+                        <input type="text" class="question-input" name="ex_4" placeholder="Type reduced form here...">
+                    </div>
+                    <div class="question-card">
+                        <div class="question-text">5. Movie stars <span class="highlight-green">who are constantly hounded</span> by the press deserve more privacy.</div>
+                        <input type="text" class="question-input" name="ex_5" placeholder="Type reduced form here...">
+                    </div>
+                    <div class="question-card">
+                        <div class="question-text">6. People <span class="highlight-green">who are smart enough</span> to get inside the mind of a criminal would make good detectives.</div>
+                        <input type="text" class="question-input" name="ex_6" placeholder="Type reduced form here...">
+                    </div>
+                    <div class="question-card">
+                        <div class="question-text">7. Roger Federer, <span class="highlight-green">who is ranked</span> among the world's best tennis players, is considered very disciplined.</div>
+                        <input type="text" class="question-input" name="ex_7" placeholder="Type reduced form here...">
+                    </div>
+                    <div class="question-card">
+                        <div class="question-text">8. Anyone <span class="highlight-green">who dreams</span> of becoming a champion athlete has to be prepared to do a lot of hard work.</div>
+                        <input type="text" class="question-input" name="ex_8" placeholder="Type reduced form here...">
+                    </div>
+                    <div class="question-card">
+                        <div class="question-text">9. The Summer Olympics, <span class="highlight-green">which are held</span> every four years, are broadcast around the world.</div>
+                        <input type="text" class="question-input" name="ex_9" placeholder="Type reduced form here...">
+                    </div>
+                    <div class="question-card">
+                        <div class="question-text">10. Someone <span class="highlight-green">who is interested</span> in the latest music trends might be a good DJ.</div>
+                        <input type="text" class="question-input" name="ex_10" placeholder="Type reduced form here...">
+                    </div>
+                    <div class="question-card">
+                        <div class="question-text">11. Children <span class="highlight-green">who are talented</span> at music should take private lessons if possible.</div>
+                        <input type="text" class="question-input" name="ex_11" placeholder="Type reduced form here...">
+                    </div>
+                    <div class="question-card">
+                        <div class="question-text">12. A person <span class="highlight-green">who is responsible</span> for a large staff has to be able to be creative with scheduling.</div>
+                        <input type="text" class="question-input" name="ex_12" placeholder="Type reduced form here...">
+                    </div>
+                    <div class="question-card">
+                        <div class="question-text">13. The books <span class="highlight-green">which were written</span> by the famous author became bestsellers.</div>
+                        <input type="text" class="question-input" name="ex_13" placeholder="Type reduced form here...">
+                    </div>
+                    <div class="question-card">
+                        <div class="question-text">14. Students <span class="highlight-green">who have</span> good communication skills can apply for the position.</div>
+                        <input type="text" class="question-input" name="ex_14" placeholder="Type reduced form here...">
+                    </div>
+                </div>
+
+                <div class="submit-container">
+                    <button type="submit" class="submit-btn">Final Submission 🚀</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Review / Results Modal -->
+        <div id="resultModal" class="modal-overlay hidden">
+            <div class="modal-card" id="modalCardContent" style="max-height: 85vh; overflow-y: auto;">
+                <h2 id="modalTitle">Final Submission</h2>
+                <p>Congratulations, <span id="modalName"></span>.</p>
+                <div class="score-display">You answered <span id="scoreVal">0</span> / 14 correctly</div>
+                
+                <div class="feedback-msg" id="feedbackText">
+                    Keep practicing! Take a close look at the review answers to see where you can improve.
+                </div>
+
+                <div class="screenshot-warning">
+                    DO NOT FORGET TO SCREENSHOT THIS AND SEND TO YOUR TEACHER.
+                </div>
+                <p style="font-size: 13px; color: #888;">Make sure to review your answers!</p>
+
+                <button class="modal-btn" onclick="openReviewMode()">Review Answers 👀</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let studentName = "";
+        let userAnswersData = {};
+        let timerInterval;
+        let timeLeft = 2400; // 40 minutes countdown (40 * 60 seconds)
+
+        const answerKey = {
+            ex_1: ["living"],
+            ex_2: ["wanting"],
+            ex_3: ["considered"],
+            ex_4: ["working"],
+            ex_5: ["constantly hounded", "hounded"],
+            ex_6: ["smart enough", "clever enough"],
+            ex_7: ["ranked"],
+            ex_8: ["dreaming"],
+            ex_9: ["held"],
+            ex_10: ["interested"],
+            ex_11: ["talented"],
+            ex_12: ["responsible"],
+            ex_13: ["written"],
+            ex_14: ["with"]
+        };
+
+        const explanations = {
+            ex_1: "Relative pronoun + verb ('who lives') changes to V-ing ('living').",
+            ex_2: "Relative pronoun + verb ('who wants') changes to V-ing ('wanting').",
+            ex_3: "Relative pronoun + 'to be' + past participle ('which is considered') drops the pronoun and 'to be', leaving 'considered'.",
+            ex_4: "Relative pronoun + verb ('who works') changes to V-ing ('working').",
+            ex_5: "Relative pronoun + 'to be' ('who are') is removed, leaving the participle phrase ('constantly hounded' or 'hounded').",
+            ex_6: "Relative pronoun + 'to be' ('who are') is removed, leaving the adjective phrase ('smart enough').",
+            ex_7: "Relative pronoun + 'to be' ('who is') is removed, leaving the past participle ('ranked').",
+            ex_8: "Relative pronoun + verb ('who dreams') changes to V-ing ('dreaming').",
+            ex_9: "Relative pronoun + 'to be' ('which are') is removed, leaving the past participle ('held').",
+            ex_10: "Relative pronoun + 'to be' ('who is') is removed, leaving the adjective ('interested').",
+            ex_11: "Relative pronoun + 'to be' ('who are') is removed, leaving the adjective ('talented').",
+            ex_12: "Relative pronoun + 'to be' ('who is') is removed, leaving the adjective ('responsible').",
+            ex_13: "Relative pronoun + 'to be' ('which were') is removed, leaving the past participle ('written').",
+            ex_14: "Relative pronoun + have/has ('who have') changes to 'with'."
+        };
+
+        function startHomework(event) {
+            event.preventDefault();
+            const nameInput = document.getElementById('fullName').value.trim();
+            if (nameInput) {
+                studentName = nameInput;
+                document.getElementById('displayName').textContent = studentName;
+                document.getElementById('startPage').classList.add('hidden');
+                document.getElementById('homeworkContent').classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                startTimer();
+            }
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    triggerAutoSubmission();
+                } else {
+                    let minutes = Math.floor(timeLeft / 60);
+                    let seconds = timeLeft % 60;
+                    document.getElementById('timerDisplay').textContent = 
+                        `⏱️ Time Remaining: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                    timeLeft--;
+                }
+            }, 1000);
+        }
+
+        function triggerAutoSubmission() {
+            const form = document.getElementById('hwForm');
+            const formData = new FormData(form);
+            processSubmission(formData);
+        }
+
+        function handleFinalSubmission(event) {
+            event.preventDefault();
+            clearInterval(timerInterval);
+            const formData = new FormData(event.target);
+            processSubmission(formData);
+        }
+
+        function cleanString(str) {
+            return str.toLowerCase()
+                      .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g, match => match === '-' ? '-' : '')
+                      .replace(/\s+/g, ' ')
+                      .trim();
+        }
+
+        function processSubmission(formData) {
+            let correctCount = 0;
+            userAnswersData = {};
+
+            for (let [key, value] of formData.entries()) {
+                let cleanedVal = cleanString(value);
+                userAnswersData[key] = value.trim();
+                
+                if (answerKey[key]) {
+                    let isCorrect = answerKey[key].some(ans => {
+                        let cleanAns = cleanString(ans);
+                        return cleanedVal === cleanAns;
+                    });
+                    if (isCorrect) {
+                        correctCount++;
+                    }
+                }
+            }
+
+            document.getElementById('modalName').textContent = studentName;
+            document.getElementById('scoreVal').textContent = correctCount;
+
+            let feedbackString = "";
+            if (correctCount <= 5) {
+                feedbackString = "Needs significant improvement. Review U8LA reduced relative clause rules carefully!";
+            } else if (correctCount >= 6 && correctCount <= 9) {
+                feedbackString = "Getting there! You understand the basics, but watch out for V-ing vs past participle structures.";
+            } else if (correctCount >= 10 && correctCount <= 13) {
+                feedbackString = "Good job! You have a solid grasp of reduced relative clauses, with just minor errors.";
+            } else if (correctCount === 14) {
+                feedbackString = "Outstanding! Perfect score! You have completely mastered U8LA Reduced Relative Clauses!";
+            }
+
+            document.getElementById('feedbackText').textContent = feedbackString;
+            document.getElementById('resultModal').classList.remove('hidden');
+        }
+
+        function openReviewMode() {
+            const card = document.getElementById('modalCardContent');
+            card.style.textAlign = "left";
+            
+            let htmlContent = `<h2>Review Answers</h2><p>Student: <strong>${studentName}</strong></p><hr>`;
+            
+            let qCounter = 1;
+            for (let key in answerKey) {
+                let userAns = userAnswersData[key] || "(No answer)";
+                let cleanedUser = cleanString(userAns);
+                let possibleCorrects = answerKey[key];
+                
+                let isCorrect = possibleCorrects.some(ans => cleanedUser === cleanString(ans));
+                
+                htmlContent += `<div class="review-item ${isCorrect ? 'correct' : 'incorrect'}">`;
+                htmlContent += `<div><strong>Q${qCounter}:</strong> Your answer: <span class="user-ans">${userAns}</span> ${isCorrect ? '✅' : '❌'}</div>`;
+                
+                if (!isCorrect) {
+                    htmlContent += `<div style="margin-top: 4px;">Correct answer: <span class="correct-ans">${possibleCorrects[0]}</span></div>`;
+                }
+                htmlContent += `<div class="explanation">💡 <strong>Explanation:</strong> ${explanations[key]}</div>`;
+                htmlContent += `</div>`;
+                qCounter++;
+            }
+
+            htmlContent += `<button class="modal-btn" onclick="location.reload()">Restart Assignment 🔄</button>`;
+            card.innerHTML = htmlContent;
+        }
+    </script>
+</body>
+</html>
